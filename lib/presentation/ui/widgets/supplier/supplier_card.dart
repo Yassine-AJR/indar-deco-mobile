@@ -35,7 +35,8 @@ class SupplierCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
-          children: [        Image.network(supplier.image,width: 100.w,fit: BoxFit.cover,),SizedBox(width: 5.w,),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [        Image.network(supplier.image,width: 90.w,fit: BoxFit.cover,),SizedBox(width: 5.w,),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

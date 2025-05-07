@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:indar_deco/core/styles/text_styles.dart';
 
 class SupplierRitchText extends StatelessWidget {
@@ -11,7 +12,7 @@ class SupplierRitchText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: SizedBox(
-        width: 220,
+        width: 200.w,
         child: Text.rich(TextSpan(children: [WidgetSpan(child: icon),const WidgetSpan(child: SizedBox(width: 4,)),TextSpan(text: text,style: AppTextStyle.smallBlackTextStyle)]))),
     );
   }
