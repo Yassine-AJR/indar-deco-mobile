@@ -33,10 +33,10 @@ class MainSliverAppBar extends StatelessWidget {
           style: AppTextStyle.appBarTextStyle,
         ),
         actions: [
-          // IconButton(onPressed: (){
-          //     Navigator.of(context).push(
-          //           MaterialPageRoute(builder: (_) => const RecommandationScreen()));
-          // }, icon: Icon(Icons.camera_outlined)),
+          IconButton(onPressed: (){
+              Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const RecommandationScreen()));
+          }, icon: Icon(Icons.camera_outlined)),
           IconButton(
               onPressed: () {
                  Navigator.of(context).push(
