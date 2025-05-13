@@ -8,6 +8,7 @@ import 'package:indar_deco/core/utils/string_const.dart';
 import 'package:indar_deco/core/utils/svg.dart';
 import 'package:indar_deco/presentation/controllers/cart_controller.dart';
 import 'package:indar_deco/presentation/controllers/notifications_controller.dart';
+import 'package:indar_deco/presentation/ui/screens/AI/prompt_generate_screen.dart';
 import 'package:indar_deco/presentation/ui/screens/AI/recommandation_screen.dart';
 import 'package:indar_deco/presentation/ui/screens/main/cart_screen.dart';
 import 'package:indar_deco/presentation/ui/screens/notifications/notifications_screen.dart';
@@ -36,7 +37,11 @@ class MainSliverAppBar extends StatelessWidget {
           IconButton(onPressed: (){
               Navigator.of(context).push(
                     MaterialPageRoute(builder: (_) => const RecommandationScreen()));
-          }, icon: Icon(Icons.camera_outlined)),
+          }, icon: Icon(Icons.looks_one_sharp)),
+           IconButton(onPressed: (){
+              Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const PromptGenerateScreen()));
+          }, icon: Icon(Icons.looks_two)),
           IconButton(
               onPressed: () {
                  Navigator.of(context).push(

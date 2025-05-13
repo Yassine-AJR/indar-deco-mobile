@@ -6,6 +6,12 @@ class RecommandationResulScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const imgs = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa49YU-TBKvmIvhiOwLWD2bCnsWQKYB7_2Ig&s",
+  "https://meubletunisie.tn/wp-content/uploads/2022/11/PHOTO-2022-09-02-11-27-48-1.jpg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3QK15Wg8-xIPdStQum6JrpGHixarbtazIoQ&s",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC3S_glmECQe9wit_bhSAzf23NJ-QsGQznWw&s",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5aL-v-oO3a7Zo5pDTeOSGuwZxUT2wUoDz1w&s"
+    ];
     return Scaffold(
       appBar: AppBar(title: Text("Result",style: AppTextStyle.appBarTextStyle,),),
       body: Padding(
@@ -18,11 +24,9 @@ class RecommandationResulScreen extends StatelessWidget {
               ), 
               itemCount: 5,
         itemBuilder:  (context, index) {
-                return Container(
-                  
-                  decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(15)),
-                  child: Text("index: $index"),
-                );
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.network(imgs[index],fit: BoxFit.cover,));
               },)
       ),
     );
