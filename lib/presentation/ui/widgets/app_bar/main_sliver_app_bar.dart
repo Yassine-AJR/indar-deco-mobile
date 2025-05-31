@@ -8,6 +8,8 @@ import 'package:indar_deco/core/utils/string_const.dart';
 import 'package:indar_deco/core/utils/svg.dart';
 import 'package:indar_deco/presentation/controllers/cart_controller.dart';
 import 'package:indar_deco/presentation/controllers/notifications_controller.dart';
+import 'package:indar_deco/presentation/ui/screens/AI/change_color_screen.dart';
+import 'package:indar_deco/presentation/ui/screens/AI/change_style_screen.dart';
 import 'package:indar_deco/presentation/ui/screens/AI/prompt_generate_screen.dart';
 import 'package:indar_deco/presentation/ui/screens/AI/recommandation_screen.dart';
 import 'package:indar_deco/presentation/ui/screens/main/cart_screen.dart';
@@ -42,6 +44,14 @@ class MainSliverAppBar extends StatelessWidget {
               Navigator.of(context).push(
                     MaterialPageRoute(builder: (_) => const PromptGenerateScreen()));
           }, icon: Icon(Icons.looks_two)),
+           IconButton(onPressed: (){
+              Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const ChangeStyleScreen()));
+          }, icon: Icon(Icons.looks_3)),
+             IconButton(onPressed: (){
+              Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const ChangeColorScreen()));
+          }, icon: Icon(Icons.looks_4)),
           IconButton(
               onPressed: () {
                  Navigator.of(context).push(
