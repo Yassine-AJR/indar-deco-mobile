@@ -39,10 +39,9 @@ class RecommandationScreen extends StatelessWidget {
                           const SizedBox(height: 40,),
 
               PrimaryButton(text: 'Generate Similars', click: ()async{
-                                  final res=  await controller.getRecommendedProducts();
 
                 Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) =>  RecommandationResulScreen(images: res,)));
+                        MaterialPageRoute(builder: (_) =>  RecommandationResulScreen(images: [],)));
               },
               disabled: controller.selectedImageRecommandation==null,)
             ]),

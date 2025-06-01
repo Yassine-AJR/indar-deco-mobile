@@ -2,10 +2,10 @@ class ApiConst {
 
  //indardeco-1903313897.eu-west-3.elb.amazonaws.com
   static const String ipAddress = "indardeco-1903313897.eu-west-3.elb.amazonaws.com";//ip Address
-  static const String aiIpAddress = "indardeco-1903313897.eu-west-3.elb.amazonaws.com";//ip Address
+  static const String aiIpAddress = "http://15.188.16.20:5002";//ip Address
 
   static const String baseUrl = "http://$ipAddress/api"; 
-  static const String aiBaseUrl = "http://$aiIpAddress"; 
+  static const String aiBaseUrl = "http://15.188.16.20:5002"; 
 
   //authentication apis
   static const String register = "$baseUrl/register";

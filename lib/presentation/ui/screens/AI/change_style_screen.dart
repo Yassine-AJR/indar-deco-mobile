@@ -53,14 +53,14 @@ class ChangeStyleScreen extends StatelessWidget {
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         padding: const EdgeInsets.symmetric(horizontal: 15),
-                        itemCount: 10,
+                        itemCount: controller.styleList.length,
                         itemBuilder: (_,index)=>Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: InkWell(
                             onTap: (){
                               controller.setStyle(index);
                             },
-                            child: AIStylePickerItem(selected: index==controller.selectedStyle, img: "https://interactionchine.wordpress.com/wp-content/uploads/2018/05/11.jpg?w=628&h=427", title: 'Classic')),
+                            child: AIStylePickerItem(selected: index==controller.selectedStyle, img: controller.styleList[index].image, title: controller.styleList[index].title)),
                         )),
                     ),
                         const SizedBox(height: 40,),
@@ -68,10 +68,10 @@ class ChangeStyleScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: PrimaryButton(text: 'Generate', click: ()async{
-                final res=  await controller.generateImage('classic',AIModel.changeStyle);
+                controller.request = controller.generateImage('classic',AIModel.changeStyle);
       // ignore: use_build_context_synchronously
       Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => DownloadImageAIResult(imageUrl: res,)));
+                      MaterialPageRoute(builder: (_) => DownloadImageAIResult()));
                               },
               disabled: controller.selectedImageStyle==null || controller.selectedStyle==null,),
             )

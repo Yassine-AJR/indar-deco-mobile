@@ -45,10 +45,10 @@ class PromptGenerateScreen extends StatelessWidget {
                               const SizedBox(height: 40,),
 
                    PrimaryButton(text: 'Generate', click: ()async{
-                  final res=  await controller.generateImage(prompt.text,AIModel.prompt);
+                    controller.request =controller.generateImage(prompt.text,AIModel.prompt);
       // ignore: use_build_context_synchronously
       Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => DownloadImageAIResult(imageUrl: res,)));
+                      MaterialPageRoute(builder: (_) => DownloadImageAIResult()));
                               
               },
               disabled: controller.prompt.isEmpty || controller.selectedImagePrompt==null )
