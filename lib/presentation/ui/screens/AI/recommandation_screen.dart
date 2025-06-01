@@ -9,7 +9,6 @@ import 'package:indar_deco/core/utils/svg.dart';
 import 'package:indar_deco/presentation/controllers/ai_controller.dart';
 import 'package:indar_deco/presentation/ui/screens/AI/recommandation_result_screen.dart';
 import 'package:indar_deco/presentation/ui/widgets/buttons/primary_button.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:indar_deco/presentation/ui/widgets/dialog/AI_image_dialog.dart';
 
 class RecommandationScreen extends StatelessWidget {
@@ -39,9 +38,11 @@ class RecommandationScreen extends StatelessWidget {
               ),
                           const SizedBox(height: 40,),
 
-              PrimaryButton(text: 'Generate Similars', click: (){
+              PrimaryButton(text: 'Generate Similars', click: ()async{
+                                  final res=  await controller.getRecommendedProducts();
+
                 Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const RecommandationResulScreen()));
+                        MaterialPageRoute(builder: (_) =>  RecommandationResulScreen(images: res,)));
               },
               disabled: controller.selectedImageRecommandation==null,)
             ]),

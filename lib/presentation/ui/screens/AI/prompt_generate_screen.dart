@@ -9,7 +9,6 @@ import 'package:indar_deco/core/utils/svg.dart';
 import 'package:indar_deco/presentation/controllers/ai_controller.dart';
 import 'package:indar_deco/presentation/ui/screens/AI/ai_download_image_result_screen.dart';
 import 'package:indar_deco/presentation/ui/widgets/buttons/primary_button.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:indar_deco/presentation/ui/widgets/dialog/AI_image_dialog.dart';
 import 'package:indar_deco/presentation/ui/widgets/text_fields/promot_input.dart';
 
@@ -45,9 +44,12 @@ class PromptGenerateScreen extends StatelessWidget {
               },),
                               const SizedBox(height: 40,),
 
-                   PrimaryButton(text: 'Generate', click: (){
-                Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const DownloadImageAIResult()));
+                   PrimaryButton(text: 'Generate', click: ()async{
+                  final res=  await controller.generateImage(prompt.text,AIModel.prompt);
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => DownloadImageAIResult(imageUrl: res,)));
+                              
               },
               disabled: controller.prompt.isEmpty || controller.selectedImagePrompt==null )
                 ]),

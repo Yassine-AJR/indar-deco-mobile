@@ -4,7 +4,8 @@ import 'package:indar_deco/core/utils/svg.dart';
 import 'package:indar_deco/presentation/ui/widgets/buttons/primary_button_icon.dart';
 
 class DownloadImageAIResult extends StatelessWidget {
-  const DownloadImageAIResult({super.key});
+  final String imageUrl;
+  const DownloadImageAIResult({super.key,required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DownloadImageAIResult extends StatelessWidget {
                   children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15),
-                    child: Image.network("https://img.designswan.com/2023/02/ai-furniture/1.jpg",fit: BoxFit.cover,width: double.infinity,)),
+                    child: Image.network(imageUrl,fit: BoxFit.cover,width: double.infinity,)),
                   const SizedBox(height: 20,),
                   PrimaryButtonIcon(icon: APPSVG.downloadIcon, click: (){})
                 ]),

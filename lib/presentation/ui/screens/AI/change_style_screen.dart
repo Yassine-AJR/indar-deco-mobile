@@ -67,10 +67,12 @@ class ChangeStyleScreen extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: PrimaryButton(text: 'Generate', click: (){
-                Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const DownloadImageAIResult()));
-              },
+              child: PrimaryButton(text: 'Generate', click: ()async{
+                final res=  await controller.generateImage('classic',AIModel.changeStyle);
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => DownloadImageAIResult(imageUrl: res,)));
+                              },
               disabled: controller.selectedImageStyle==null || controller.selectedStyle==null,),
             )
           ]),

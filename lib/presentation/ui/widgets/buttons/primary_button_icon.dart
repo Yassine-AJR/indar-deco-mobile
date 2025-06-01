@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:indar_deco/core/styles/colors.dart';
-import 'package:indar_deco/core/styles/text_styles.dart';
-import 'package:indar_deco/core/utils/svg.dart';
 
 class PrimaryButtonIcon extends StatelessWidget {
   final String icon ;

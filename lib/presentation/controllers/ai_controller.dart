@@ -3,17 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:indar_deco/core/utils/enums.dart';
+import 'package:indar_deco/di.dart';
+import 'package:indar_deco/domain/entities/color.dart';
+import 'package:indar_deco/domain/usecases/artificial_intelligence/change_color_usecase.dart';
+import 'package:indar_deco/domain/usecases/artificial_intelligence/change_style_usecase.dart';
+import 'package:indar_deco/domain/usecases/artificial_intelligence/generate_decore_usecase.dart';
+import 'package:indar_deco/domain/usecases/artificial_intelligence/products_recommandation_usecase.dart';
 
 class AIController extends GetxController {
   File? selectedImageRecommandation;
     File? selectedImagePrompt;
   File? selectedImageColor;
     File? selectedImageStyle;
-    Color? selectedColor;
+    MyColor? selectedColor;
 
   int? selectedStyle;
     String prompt ="";
 
+final supportedColors=[
+  MyColor(title: 'red', color: Colors.red),
+  MyColor(title: 'blue', color: Colors.blue),
+    MyColor(title: 'green', color: Colors.green),
+        MyColor(title: 'yellow', color: Colors.yellow),
+        MyColor(title: 'orange', color: Colors.orange),
+        MyColor(title: 'yellow', color: Colors.yellow),
+        MyColor(title: 'purple', color: Colors.purple),      
+        MyColor(title: 'purple', color: Colors.purple),
+        MyColor(title: 'brown', color: Colors.brown),
+        MyColor(title: 'cyan', color: Colors.cyan),
+        MyColor(title: 'pink', color: Colors.pink),
+        MyColor(title: 'indigo', color: Colors.indigo),
+        MyColor(title: 'teal', color: Colors.teal),
+        MyColor(title: 'lime', color: Colors.lime),
+
+];
   final ImagePicker _picker = ImagePicker();
    
 
@@ -62,11 +85,32 @@ class AIController extends GetxController {
     update();
   }
 
-  void sendImage() {
-    if (selectedImageRecommandation != null) {
-      // Your upload/send logic here
-      print("Sending image: ${selectedImageRecommandation!.path}");
+  Future<String> generateImage(String payload, AIModel model) async{
+    String result='';
+   switch (model) {
+      case AIModel.recommandation:
+        break;
+      case AIModel.prompt:
+       final res = await AiGenerateDecoreUsecase(sl())(prompt: payload, file: selectedImagePrompt!);
+       res.fold((l) => null, (r) => result=r);
+        break;
+      case AIModel.changeColor:
+         final res = await AiChangeColorUsecase(sl())(color: payload, file: selectedImageColor!);
+       res.fold((l) => null, (r) => result=r);
+        break;
+           case AIModel.changeStyle:
+        final res = await AiChangeStyleUsecase(sl())(style: payload, file: selectedImageColor!);
+       res.fold((l) => null, (r) => result=r);
+        break;
     }
+    return result;
+  }
+
+  Future<List<String>> getRecommendedProducts()async{
+    List<String> result=[];
+ final res = await AiRecommendationUsecase(sl())(file: selectedImageRecommandation!);
+       res.fold((l) => null, (r) => result=r);
+       return result;
   }
 
   //style//
@@ -76,7 +120,7 @@ class AIController extends GetxController {
   }
 
     //color//
-  void setColor(Color color){
+  void setColor(MyColor color){
     selectedColor = color;
     update();
   }

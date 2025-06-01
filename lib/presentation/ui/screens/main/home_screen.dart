@@ -14,6 +14,7 @@ import 'package:indar_deco/presentation/ui/screens/product/product_screen.dart';
 import 'package:indar_deco/presentation/ui/widgets/app_bar/main_sliver_app_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:indar_deco/presentation/ui/widgets/drawer/drawer.dart';
 import 'package:indar_deco/presentation/ui/widgets/product/products_grid_item.dart';
 import 'package:indar_deco/presentation/ui/widgets/product/products_item.dart';
 import 'package:indar_deco/presentation/ui/widgets/product/promotion_item.dart';
@@ -51,6 +52,8 @@ late final TextEditingController searchController;
   Widget build(BuildContext context) {
     return SafeArea(child: 
     Scaffold(
+                drawer: MyDrawer(),
+
       body: RefreshIndicator(
          color: AppColors.secondary,
           onRefresh: () async{
