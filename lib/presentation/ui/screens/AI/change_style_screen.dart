@@ -59,6 +59,7 @@ class ChangeStyleScreen extends StatelessWidget {
                           child: InkWell(
                             onTap: (){
                               controller.setStyle(index);
+                              controller.selectedStyleTitle=controller.styleList[index].title;
                             },
                             child: AIStylePickerItem(selected: index==controller.selectedStyle, img: controller.styleList[index].image, title: controller.styleList[index].title)),
                         )),
@@ -68,10 +69,10 @@ class ChangeStyleScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: PrimaryButton(text: 'Generate', click: ()async{
-                controller.request = controller.generateImage('classic',AIModel.changeStyle);
+               // controller.request = controller.generateImage(controller.selectedStyleTitle!,AIModel.changeStyle);
       // ignore: use_build_context_synchronously
       Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => DownloadImageAIResult()));
+                      MaterialPageRoute(builder: (_) => const DownloadImageAIResult(image:"assets/images/style-output.jpg" ,)));
                               },
               disabled: controller.selectedImageStyle==null || controller.selectedStyle==null,),
             )

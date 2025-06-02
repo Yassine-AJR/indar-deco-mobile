@@ -1,13 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_media_downloader/flutter_media_downloader.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:indar_deco/core/styles/colors.dart';
 import 'package:indar_deco/core/styles/text_styles.dart';
 import 'package:indar_deco/core/utils/svg.dart';
 import 'package:indar_deco/presentation/controllers/ai_controller.dart';
 import 'package:indar_deco/presentation/ui/widgets/buttons/primary_button_icon.dart';
 
 class DownloadImageAIResult extends StatelessWidget {
+  final String? image;
   
-    const DownloadImageAIResult({super.key});
+    const DownloadImageAIResult({super.key,this .image});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class DownloadImageAIResult extends StatelessWidget {
               init:  AIController(),
               builder: (controller) {
                 return FutureBuilder(
-                  future: controller.request,
+                  future: controller.fakeFuture(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                          return Padding(
@@ -28,9 +34,20 @@ class DownloadImageAIResult extends StatelessWidget {
                           children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(15),
-                            child: Image.network(snapshot.data!,fit: BoxFit.cover,width: double.infinity,)),
+                            child: Image.asset(image!,fit: BoxFit.cover,width: double.infinity,)),
                           const SizedBox(height: 20,),
-                          PrimaryButtonIcon(icon: APPSVG.downloadIcon, click: (){})
+                          PrimaryButtonIcon(icon: APPSVG.downloadIcon, click: ()async{
+                           await   MediaDownload().downloadMedia(context,image!).then((value) =>  Fluttertoast.showToast(
+        msg: "downloading...",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: AppColors.primary,
+        textColor: Colors.white,
+        fontSize: 16.0
+    ));
+
+                          })
                         ]),
                       ),
                     );

@@ -314,6 +314,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_media_downloader:
+    dependency: "direct main"
+    description:
+      name: flutter_media_downloader
+      sha256: "80b19d2c2822f5abd22e14f09adc22ca8b3e8197f3bef87aecb3b0ea6a17734f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:

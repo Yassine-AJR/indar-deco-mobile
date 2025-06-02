@@ -92,7 +92,7 @@ class ApiConst {
   static const String reviewImages = "http://$ipAddress/api/uploads/reviews";
 
   //AI apis
-    static const String aiRecommandation = "$aiBaseUrl/recommend";
+    static const String aiRecommandation = "http://15.188.16.20:8000/recommend";
   static const String aiChangeColor = "$aiBaseUrl/change-color";
   static const String aiChangeStyle = "$aiBaseUrl/change-style-controlnet";
   static const String aiGenerateDecor = "$aiBaseUrl/generate-decor";

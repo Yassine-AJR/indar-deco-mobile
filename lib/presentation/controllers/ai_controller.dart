@@ -19,6 +19,8 @@ class AIController extends GetxController {
   MyColor? selectedColor;
   Future<String>? request; 
   int? selectedStyle;
+    String? selectedStyleTitle='';
+
   String prompt ="";
   List<ProductStyle> styleList = [
    const ProductStyle(title: 'classic', image: 'https://i.pinimg.com/736x/72/8a/5e/728a5e3f3505fa004af56151d7c7d358.jpg'),
@@ -30,6 +32,7 @@ class AIController extends GetxController {
 
 
 final supportedColors=[
+    MyColor(title: 'white', color: Colors.white),
   MyColor(title: 'red', color: Colors.red),
   MyColor(title: 'blue', color: Colors.blue),
     MyColor(title: 'green', color: Colors.green),
@@ -108,7 +111,7 @@ final supportedColors=[
         break;
            case AIModel.changeStyle:
         final res = await AiChangeStyleUsecase(sl())(style: payload, file: selectedImageStyle!);
-       res.fold((l) => null, (r) => result=r);
+       res.fold((l) => print(l.toString()), (r) => result=r);
         break;
     }
     return result;
@@ -131,5 +134,10 @@ final supportedColors=[
   void setColor(MyColor color){
     selectedColor = color;
     update();
+  }
+
+  Future<bool> fakeFuture()async{
+    await Future.delayed(Duration(seconds: 1));
+    return true;
   }
 }

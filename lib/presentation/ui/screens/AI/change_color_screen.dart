@@ -93,10 +93,10 @@ Color currentColor =const Color(0xff443a49);
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: PrimaryButton(text: 'Generate', click: ()async{
-                  controller.request =   controller.generateImage(controller.selectedColor!.title,AIModel.changeColor);
+              //    controller.request =   controller.generateImage(controller.selectedColor!.title,AIModel.changeColor);
       // ignore: use_build_context_synchronously
       Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => DownloadImageAIResult()));
+                      MaterialPageRoute(builder: (_) => const DownloadImageAIResult(image: 'assets/images/color-output.jpg',)));
                                 },
                 disabled: controller.selectedImageColor==null||controller.selectedColor==null),
               )

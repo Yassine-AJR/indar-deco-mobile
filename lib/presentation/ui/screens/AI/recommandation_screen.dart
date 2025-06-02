@@ -41,7 +41,7 @@ class RecommandationScreen extends StatelessWidget {
               PrimaryButton(text: 'Generate Similars', click: ()async{
 
                 Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) =>  RecommandationResulScreen(images: [],)));
+                        MaterialPageRoute(builder: (_) =>  const RecommandationResulScreen()));
               },
               disabled: controller.selectedImageRecommandation==null,)
             ]),
