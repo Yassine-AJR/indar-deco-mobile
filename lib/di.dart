@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:indar_deco/data/data_Sources/remote_data_source/promotion_remote_data_source.dart';
 import 'package:indar_deco/data/data_sources/local_data_source/authentication_local_data_source.dart';
+import 'package:indar_deco/data/data_sources/remote_data_source/ai_remote_data_source.dart';
 import 'package:indar_deco/data/data_sources/remote_data_source/authentication_remote_data_source.dart';
 import 'package:indar_deco/data/data_sources/remote_data_source/category_remote_data_source.dart';
 import 'package:indar_deco/data/data_sources/remote_data_source/notification_remote_data_source.dart';
@@ -10,6 +11,7 @@ import 'package:indar_deco/data/data_sources/remote_data_source/reclamations_rem
 import 'package:indar_deco/data/data_sources/remote_data_source/review_remote_data_source.dart';
 import 'package:indar_deco/data/data_sources/remote_data_source/sales_remote_data_source.dart';
 import 'package:indar_deco/data/data_sources/remote_data_source/sub_category_remote_data_source.dart';
+import 'package:indar_deco/data/repositories/ai_repository_impl.dart';
 import 'package:indar_deco/data/repositories/authentication_repository_impl.dart';
 import 'package:indar_deco/data/repositories/category_reopsitory_impl.dart';
 import 'package:indar_deco/data/repositories/notification_repository_impl.dart';
@@ -22,6 +24,7 @@ import 'package:indar_deco/data/repositories/review_repository_impl.dart';
 import 'package:indar_deco/data/repositories/sales_repository_impl.dart';
 import 'package:indar_deco/data/repositories/sub_category_repository_impl.dart';
 import 'package:indar_deco/data/repositories/supplier_repository_impl.dart';
+import 'package:indar_deco/domain/repositories/ai_repository.dart';
 import 'package:indar_deco/domain/repositories/category_repository.dart';
 import 'package:indar_deco/domain/repositories/notifications_repository.dart';
 import 'package:indar_deco/domain/repositories/product3d_repository.dart';
@@ -33,6 +36,10 @@ import 'package:indar_deco/domain/repositories/review_repository.dart';
 import 'package:indar_deco/domain/repositories/sales_repository.dart';
 import 'package:indar_deco/domain/repositories/sub_category_repository.dart';
 import 'package:indar_deco/domain/repositories/supplier_repository.dart';
+import 'package:indar_deco/domain/usecases/artificial_intelligence/change_color_usecase.dart';
+import 'package:indar_deco/domain/usecases/artificial_intelligence/change_style_usecase.dart';
+import 'package:indar_deco/domain/usecases/artificial_intelligence/generate_decore_usecase.dart';
+import 'package:indar_deco/domain/usecases/artificial_intelligence/products_recommandation_usecase.dart';
 import 'package:indar_deco/domain/usecases/authentication_usecases/forget_password_usecase.dart';
 import 'package:indar_deco/domain/usecases/authentication_usecases/get_recovery_email_usecase.dart';
 import 'package:indar_deco/domain/usecases/authentication_usecases/reset_password_usecase.dart';
@@ -108,6 +115,8 @@ Future<void> init() async {
       () => ReclamationsRepositoryImpl(sl()));
   sl.registerLazySingleton<NotificationRepository>(
       () => NotificationRepositoryImpl(sl()));
+  sl.registerLazySingleton<ArtificialIntelligenceRepository>(
+      () => ArtificialIntelligenceRepositoryImpl(sl()));
 
   /* data sources */
   sl.registerLazySingleton<AuthenticationRemoteDataSource>(
@@ -136,6 +145,8 @@ Future<void> init() async {
       () => ReclamationRemoteDataSourceImpl());
   sl.registerLazySingleton<NotificationRemoteDataSource>(
       () => NotificationRemoteDataSourceImpl());
+  sl.registerLazySingleton<ArtificialIntelligenceRemoteDataSource>(
+      () => ArtificialIntelligenceRemoteDataSourceImpl());
 
   /* usecases */
   //authentication//
@@ -200,9 +211,17 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetSingleReclamationUsecase(sl()));
 
   
-  // //notifications//
+  //notifications//
   sl.registerLazySingleton(() => UpdateNotificationUsecase(sl()));
   sl.registerLazySingleton(() => GetNotificationByIDUsecase(sl()));
   sl.registerLazySingleton(() => GetNotificationByUserUsecase(sl()));
   sl.registerLazySingleton(() => DeleteNotificationUsecase(sl()));
+
+
+  //artificial intelligence //
+    sl.registerLazySingleton(() => AiGenerateDecoreUsecase(sl()));
+    sl.registerLazySingleton(() => AiChangeColorUsecase(sl()));
+    sl.registerLazySingleton(() => AiChangeStyleUsecase(sl()));
+    sl.registerLazySingleton(() => AiRecommendationUsecase(sl()));
+
 }

@@ -2,8 +2,11 @@ class ApiConst {
 
  //indardeco-1903313897.eu-west-3.elb.amazonaws.com
   static const String ipAddress = "indardeco-1903313897.eu-west-3.elb.amazonaws.com";//ip Address
+  static const String aiIpAddress = "http://15.188.16.20:5002";//ip Address
+
   static const String baseUrl = "http://$ipAddress/api"; 
-  
+  static const String aiBaseUrl = "http://15.188.16.20:5002"; 
+
   //authentication apis
   static const String register = "$baseUrl/register";
   static const String login = "$baseUrl/login";
@@ -87,5 +90,11 @@ class ApiConst {
   //assets apis
   static const String userImages = "http://$ipAddress/api/uploads/images";
   static const String reviewImages = "http://$ipAddress/api/uploads/reviews";
+
+  //AI apis
+    static const String aiRecommandation = "http://15.188.16.20:8000/recommend";
+  static const String aiChangeColor = "$aiBaseUrl/change-color";
+  static const String aiChangeStyle = "$aiBaseUrl/change-style-controlnet";
+  static const String aiGenerateDecor = "$aiBaseUrl/generate-decor";
 
 }
